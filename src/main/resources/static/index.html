@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas Spring Boot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        input {
+            padding: 8px;
+            width: 80px;
+            margin: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        #hasil {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f5f5f5;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>🌱 Tugas Spring Boot</h1>
+
+<div class="card">
+    <h2>5W tentang Spring</h2>
+    <p>
+        <a href="/api/spring/5w" target="_blank">
+            Lihat 5W Spring
+        </a>
+    </p>
+</div>
+
+<div class="card">
+    <h2>John Travolta</h2>
+    <p>
+        <a href="/api/john-travolta" target="_blank">
+            Lihat John Travolta
+        </a>
+    </p>
+</div>
+
+<div class="card">
+    <h2>Persamaan Kuadrat</h2>
+
+    <p>
+        Rumus:
+        <strong>ax² + bx + c = 0</strong>
+    </p>
+
+    <input type="number" id="a" value="1" placeholder="a">
+    <input type="number" id="b" value="-5" placeholder="b">
+    <input type="number" id="c" value="6" placeholder="c">
+
+    <button onclick="hitung()">Hitung</button>
+
+    <div id="hasil">
+        Masukkan nilai a, b, dan c.
+    </div>
+</div>
+
+<script>
+    async function hitung() {
+        const a = document.getElementById("a").value;
+        const b = document.getElementById("b").value;
+        const c = document.getElementById("c").value;
+
+        const response = await fetch(
+            `/api/kuadrat?a=${a}&b=${b}&c=${c}`
+        );
+
+        const data = await response.json();
+
+        document.getElementById("hasil").innerHTML =
+            `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+    }
+</script>
+
+</body>
+</html>
