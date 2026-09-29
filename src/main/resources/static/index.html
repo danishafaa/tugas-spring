@@ -3,102 +3,443 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tugas Spring Boot</title>
+
+    <title>Tugas Spring Boot - V3</title>
+
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 20px;
+        * {
+            box-sizing: border-box;
         }
 
-        h1 {
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #f4f6f8;
+            color: #222;
+        }
+
+        header {
+            background: #198754;
+            color: white;
             text-align: center;
+            padding: 30px 20px;
+        }
+
+        header h1 {
+            margin: 0 0 10px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 0 20px;
         }
 
         .card {
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
 
-        input {
-            padding: 8px;
-            width: 80px;
+        h2 {
+            margin-top: 0;
+        }
+
+        input,
+        select {
+            padding: 10px;
             margin: 5px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
         }
 
         button {
-            padding: 10px 20px;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 6px;
+            background: #198754;
+            color: white;
             cursor: pointer;
+            margin: 5px;
         }
 
-        #hasil {
+        button:hover {
+            opacity: 0.85;
+        }
+
+        .result {
             margin-top: 20px;
-            padding: 15px;
-            background: #f5f5f5;
+            padding: 20px;
+            background: #f8f9fa;
             border-radius: 8px;
+            border-left: 5px solid #198754;
+        }
+
+        .error {
+            border-left-color: #dc3545;
+            color: #dc3545;
+        }
+
+        .history-item {
+            padding: 12px;
+            margin: 8px 0;
+            background: #f8f9fa;
+            border-radius: 6px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            background: #198754;
+            color: white;
+            font-size: 13px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #666;
         }
     </style>
 </head>
 
 <body>
 
-<h1>🌱 Tugas Spring Boot</h1>
+<header>
+    <h1>🌱 Tugas Spring Boot</h1>
+    <p>V3 — 5W, John Travolta & Persamaan Kuadrat</p>
+</header>
 
-<div class="card">
-    <h2>5W tentang Spring</h2>
-    <p>
-        <a href="/api/spring/5w" target="_blank">
-            Lihat 5W Spring
-        </a>
-    </p>
-</div>
+<div class="container">
 
-<div class="card">
-    <h2>John Travolta</h2>
-    <p>
-        <a href="/api/john-travolta" target="_blank">
-            Lihat John Travolta
-        </a>
-    </p>
-</div>
+    <!-- 5W -->
+    <div class="card">
+        <h2>📚 5W tentang Spring</h2>
 
-<div class="card">
-    <h2>Persamaan Kuadrat</h2>
+        <p>
+            <a href="/api/spring/5w" target="_blank">
+                Buka data 5W Spring
+            </a>
+        </p>
 
-    <p>
-        Rumus:
-        <strong>ax² + bx + c = 0</strong>
-    </p>
-
-    <input type="number" id="a" value="1" placeholder="a">
-    <input type="number" id="b" value="-5" placeholder="b">
-    <input type="number" id="c" value="6" placeholder="c">
-
-    <button onclick="hitung()">Hitung</button>
-
-    <div id="hasil">
-        Masukkan nilai a, b, dan c.
+        <p>
+            Spring adalah framework Java yang membantu pengembangan
+            aplikasi menjadi lebih terstruktur dan modular.
+        </p>
     </div>
+
+    <!-- John Travolta -->
+    <div class="card">
+        <h2>🎬 John Travolta</h2>
+
+        <p>
+            Contoh penggunaan endpoint Spring untuk menampilkan
+            informasi John Travolta.
+        </p>
+
+        <a href="/api/john-travolta" target="_blank">
+            Lihat data John Travolta →
+        </a>
+    </div>
+
+    <!-- Persamaan Kuadrat -->
+    <div class="card">
+
+        <h2>🧮 Kalkulator Persamaan Kuadrat</h2>
+
+        <p>
+            Bentuk umum:
+            <strong>ax² + bx + c = 0</strong>
+        </p>
+
+        <label>Contoh:</label>
+
+        <select id="contoh" onchange="pilihContoh()">
+            <option value="">-- Pilih contoh --</option>
+            <option value="1,-5,6">x² - 5x + 6 = 0</option>
+            <option value="1,-4,4">x² - 4x + 4 = 0</option>
+            <option value="1,2,5">x² + 2x + 5 = 0</option>
+        </select>
+
+        <br><br>
+
+        <label>a:</label>
+        <input type="number" id="a" value="1">
+
+        <label>b:</label>
+        <input type="number" id="b" value="-5">
+
+        <label>c:</label>
+        <input type="number" id="c" value="6">
+
+        <br>
+
+        <button onclick="hitung()">
+            Hitung
+        </button>
+
+        <button onclick="resetForm()">
+            Reset
+        </button>
+
+        <div id="hasil" class="result">
+            Masukkan nilai a, b, dan c kemudian klik Hitung.
+        </div>
+
+    </div>
+
+    <!-- Riwayat -->
+    <div class="card">
+
+        <h2>📝 Riwayat Perhitungan</h2>
+
+        <div id="history">
+            Belum ada perhitungan.
+        </div>
+
+        <button onclick="hapusRiwayat()">
+            Hapus Riwayat
+        </button>
+
+    </div>
+
 </div>
+
+<footer>
+    Tugas Spring Boot — V3
+</footer>
 
 <script>
+
+    let history = [];
+
+    function pilihContoh() {
+
+        const value =
+            document.getElementById("contoh").value;
+
+        if (!value) {
+            return;
+        }
+
+        const angka = value.split(",");
+
+        document.getElementById("a").value = angka[0];
+        document.getElementById("b").value = angka[1];
+        document.getElementById("c").value = angka[2];
+    }
+
+
     async function hitung() {
-        const a = document.getElementById("a").value;
-        const b = document.getElementById("b").value;
-        const c = document.getElementById("c").value;
 
-        const response = await fetch(
-            `/api/kuadrat?a=${a}&b=${b}&c=${c}`
-        );
+        const a =
+            document.getElementById("a").value;
 
-        const data = await response.json();
+        const b =
+            document.getElementById("b").value;
+
+        const c =
+            document.getElementById("c").value;
+
+        const hasil =
+            document.getElementById("hasil");
+
+
+        // Validasi
+        if (a === "" || b === "" || c === "") {
+
+            hasil.className = "result error";
+
+            hasil.innerHTML =
+                "❌ Semua nilai a, b, dan c harus diisi.";
+
+            return;
+        }
+
+
+        if (Number(a) === 0) {
+
+            hasil.className = "result error";
+
+            hasil.innerHTML =
+                "❌ Nilai a tidak boleh 0 karena bukan persamaan kuadrat.";
+
+            return;
+        }
+
+
+        try {
+
+            const response =
+                await fetch(
+                    `/api/kuadrat?a=${a}&b=${b}&c=${c}`
+                );
+
+            const data =
+                await response.json();
+
+
+            if (data.status === "error") {
+
+                hasil.className = "result error";
+
+                hasil.innerHTML =
+                    `❌ ${data.message}`;
+
+                return;
+            }
+
+
+            hasil.className = "result";
+
+
+            let html = `
+                <h3>Hasil Perhitungan</h3>
+
+                <p>
+                    <strong>Persamaan:</strong>
+                    ${data.persamaan}
+                </p>
+
+                <p>
+                    <strong>Diskriminan:</strong>
+                    ${data.diskriminan}
+                </p>
+
+                <p>
+                    <strong>Jenis akar:</strong>
+                    ${data.jenis_akar}
+                </p>
+            `;
+
+
+            if (data.x1 !== undefined) {
+
+                html += `
+                    <p>
+                        <strong>x₁:</strong>
+                        ${data.x1}
+                    </p>
+
+                    <p>
+                        <strong>x₂:</strong>
+                        ${data.x2}
+                    </p>
+                `;
+
+            } else {
+
+                html += `
+                    <p>
+                        <strong>Akar 1:</strong>
+                        ${data.akar_1}
+                    </p>
+
+                    <p>
+                        <strong>Akar 2:</strong>
+                        ${data.akar_2}
+                    </p>
+                `;
+            }
+
+
+            hasil.innerHTML = html;
+
+
+            // Simpan riwayat
+            history.unshift({
+                persamaan: data.persamaan,
+                diskriminan: data.diskriminan,
+                jenis: data.jenis_akar
+            });
+
+
+            // Batasi 5 riwayat
+            if (history.length > 5) {
+                history.pop();
+            }
+
+
+            tampilkanRiwayat();
+
+        } catch (error) {
+
+            hasil.className = "result error";
+
+            hasil.innerHTML =
+                "❌ Terjadi kesalahan saat menghubungi server Spring.";
+        }
+    }
+
+
+    function tampilkanRiwayat() {
+
+        const container =
+            document.getElementById("history");
+
+
+        if (history.length === 0) {
+
+            container.innerHTML =
+                "Belum ada perhitungan.";
+
+            return;
+        }
+
+
+        container.innerHTML =
+            history.map((item, index) => `
+                <div class="history-item">
+
+                    <span class="badge">
+                        #${index + 1}
+                    </span>
+
+                    <strong>
+                        ${item.persamaan}
+                    </strong>
+
+                    <br>
+
+                    Diskriminan:
+                    ${item.diskriminan}
+
+                    <br>
+
+                    Jenis:
+                    ${item.jenis}
+
+                </div>
+            `).join("");
+    }
+
+
+    function resetForm() {
+
+        document.getElementById("a").value = 1;
+        document.getElementById("b").value = -5;
+        document.getElementById("c").value = 6;
+
+        document.getElementById("contoh").value = "";
+
+        document.getElementById("hasil").className =
+            "result";
 
         document.getElementById("hasil").innerHTML =
-            `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+            "Masukkan nilai a, b, dan c kemudian klik Hitung.";
     }
+
+
+    function hapusRiwayat() {
+
+        history = [];
+
+        tampilkanRiwayat();
+    }
+
 </script>
 
 </body>

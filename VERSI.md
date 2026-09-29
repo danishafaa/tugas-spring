@@ -14,11 +14,31 @@ Tujuan: membuat hasil endpoint lebih informatif.
 - Perhitungan diskriminan
 - Dua akar, akar kembar, dan akar kompleks
 
-## V3 — Nilai Tambahan
-Ide pengembangan yang bisa ditambahkan saat presentasi:
-1. Frontend HTML sederhana.
-2. CSS agar tampilan lebih bagus.
-3. Riwayat persamaan yang pernah dihitung.
-4. Validasi input.
-5. Unit test untuk kasus D > 0, D = 0, dan D < 0.
-6. Dokumentasi API di README.
+## V3 — Pengembangan Aplikasi
+
+Pada versi ketiga, aplikasi dikembangkan dengan beberapa fitur tambahan:
+
+- Tampilan web yang lebih informatif.
+- Validasi input persamaan kuadrat.
+- Nilai `a` tidak boleh 0.
+- Pilihan contoh persamaan kuadrat.
+- Menampilkan diskriminan.
+- Menampilkan jenis akar.
+- Menampilkan akar real maupun kompleks.
+- Riwayat maksimal 5 perhitungan.
+- Tombol reset form.
+- Tombol menghapus riwayat.
+
+### Contoh kasus yang diuji
+
+1. `x² - 5x + 6 = 0`
+    - Dua akar real berbeda.
+    - x₁ = 3
+    - x₂ = 2
+
+2. `x² - 4x + 4 = 0`
+    - Satu akar real kembar.
+    - x = 2
+
+3. `x² + 2x + 5 = 0`
+    - Akar kompleks.

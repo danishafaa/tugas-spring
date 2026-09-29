@@ -40,3 +40,36 @@ Response dibuat lebih terstruktur dan input persamaan kuadrat memakai parameter.
 
 ### V3
 Ditambahkan riwayat perhitungan dan endpoint informasi aplikasi.
+
+## Riwayat Pengembangan
+
+### V1
+Versi awal:
+- Spring Boot
+- Endpoint 5W tentang Spring
+- Endpoint John Travolta
+- Endpoint persamaan kuadrat
+
+### V2
+Pengembangan:
+- Tampilan web HTML
+- Kalkulator persamaan kuadrat
+- Interaksi JavaScript dengan REST API
+
+### V3
+Pengembangan lanjutan:
+- Validasi input
+- Pilihan contoh persamaan
+- Deteksi jenis akar
+- Dukungan akar kompleks
+- Riwayat perhitungan
+- Tombol reset dan hapus riwayat
+
+## Pengujian
+
+Persamaan yang diuji:
+
+- `x² - 5x + 6 = 0`
+- `x² - 4x + 4 = 0`
+- `x² + 2x + 5 = 0`
+- Input `a = 0`
